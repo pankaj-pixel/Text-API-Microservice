@@ -1,0 +1,18 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+
+#hook for automate pytest
+-   repo: local
+    hooks:
+      - id: pytest
+        name: pytest runner
+        entry: pytest
+        language: system
+        pass_filenames: false
+        stages: [commit]
+        always_run: true
