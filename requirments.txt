@@ -3,3 +3,8 @@ gunicorn
 uvicorn
 jinja2
 pytest
+python-dotenv
+python-multipart
+aiofiles
+pillow
+httpx
