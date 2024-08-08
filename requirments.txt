@@ -9,3 +9,4 @@ aiofiles
 pillow
 httpx
 pytesseract
+pydantic_settings
