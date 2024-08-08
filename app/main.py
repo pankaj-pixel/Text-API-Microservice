@@ -1,4 +1,5 @@
 from fastapi import (FastAPI,Request,UploadFile,Depends,File,HTTPException )
+from .auth import get_authorization
 from fastapi.responses import HTMLResponse,FileResponse
 from fastapi.templating import Jinja2Templates
 from PIL import Image
@@ -18,14 +19,19 @@ app = FastAPI()
 templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 
 
+
+
+
+
+
 @app.get("/", tags=["users"], response_class=HTMLResponse)
 def root(request: Request):
     return templates.TemplateResponse(name="base.html", context={"request": request})
 
 
 @app.post("/")
-async def get_home(file: UploadFile = File(...) ):
-
+async def get_home(file: UploadFile = File(...),auth_token:str = Depends(get_authorization)):
+    print(auth_token)
     UPLOAD_DIR.mkdir( exist_ok=True) 
     file_bytes = io.BytesIO(await file.read())  # Read the file asynchronously    
     try:
@@ -36,10 +42,9 @@ async def get_home(file: UploadFile = File(...) ):
     
     pred = pytesseract.image_to_string(img)
     print(pred)
-    req_result = [x for x in pred.split(" ")]
+    req_result = [x for x in pred.split("/n")]
     print(req_result)
-
-    return {"Results ": req_result , "Originals" :pred}   
+    return {"Results ": req_result , "Originals" :pred }   
 
 
 
@@ -52,8 +57,6 @@ async def post_upload(file: UploadFile = File(...) ):
          img = Image.open(file_bytes)
          pred = pytesseract.image_to_string(img)
          print(pred)
-
-
     except:
         raise HTTPException(detail="Invalid Image",status_code=400)
     fname = pathlib.Path(file.filename)
