@@ -31,13 +31,12 @@ def test_post_upload():
 
         response = client.post("/upload",files={"file":open(path,'rb')})
         if img is None:
-            assert response.status_code == 200
+            assert response.status_code == 400
         else:
             assert response.status_code == 200 
-            rstream = io.BytesIO(response.content)
-            echo_image  =Image.open(rstream)
-            diffrence  = ImageChops.difference(echo_image,img).getbbox()
-            assert diffrence is None
+            data = response.json()
+            print(data)
+            assert len(data.keys()) ==2
             
     #print(path)
     shutil.rmtree(UPLOAD_DIR)    
