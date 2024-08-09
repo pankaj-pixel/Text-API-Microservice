@@ -26,7 +26,7 @@ templates = Jinja2Templates(directory=str(BASE_DIR/"templates"))
 
 @app.get("/", tags=["users"], response_class=HTMLResponse)
 def root(request: Request):
-    return templates.TemplateResponse(name="base.html", context={"request": request})
+    return templates.TemplateResponse(name="home.html", context={"request": request})
 
 
 @app.post("/")

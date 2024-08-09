@@ -1,10 +1,61 @@
 {% extends "base.html" %}
 
 {%  block content %}
-<div class="text-center-my-5 mx-5>">
-    <div class="text-center-my-5 mx-5>">
-        <h1>code Game On!!</h1>
-    </div>    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Image</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+        }
+
+        .custom-input {
+            border: 2px solid #007bff;
+            border-radius: 4px;
+        }
+
+        .custom-header {
+            font-family: 'Arial', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 20px;
+            padding: 3px;
+        }
+        .form-control-file {
+            display: inline-block;
+            width: auto;
+            font-size: 0.875rem; /* Smaller font size for the file input button */
+            padding: 0.375rem 0.75rem; /* Adjust padding for size */
+        }
+        .form-label{
+            padding-right: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container custom-container">
+        <h1 class="custom-header">Text to Image</h1>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload the file</label>
+            <input class="form-control form-control-file  custom-label" type="file" id="formFile">
+        </div>  
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 
 
 
